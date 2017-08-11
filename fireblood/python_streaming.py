@@ -4,7 +4,7 @@ try:
 except ImportError:
     import simplejson as json
 
-# Import the necessary methods from "twitter" library, whl
+# Import the necessary methods from "twitter" library, whl file
 from twitter import Twitter, OAuth, TwitterHTTPError, TwitterStream
 
 # Variables that contains the user credentials to access Twitter API
