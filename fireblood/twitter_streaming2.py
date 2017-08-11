@@ -3,6 +3,7 @@
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
+from firebase import firebase
 
 # Variables that contains the user credentials to access Twitter API
 access_token = "546077366-whwABXIlnpGiQq4uD1bVKDZIfl2fk47beJZD0kXM"
@@ -15,10 +16,17 @@ consumer_secret = "ex1sUrdHYktlLqmuzv08YYuLbIgyVYSowkyAW1vuTmlWho4Bjj"
 class StdOutListener(StreamListener):
     def on_data(self, data):
         print data
+        firebase1 = firebase.FirebaseApplication('https://mydd-d1223.firebaseio.com/', None)
+        result = firebase1.post('/tweets',data)
+        print result
+
         return True
 
     def on_error(self, status):
-        print status
+        firebase1 = firebase.FirebaseApplication('https://mydd-d1223.firebaseio.com/', None)
+        result = firebase1.post()
+        print result
+        print "status: " + status
 
 
 if __name__ == '__main__':
@@ -30,3 +38,4 @@ if __name__ == '__main__':
 
     # This line filter Twitter Streams to capture data by the keywords
     stream.filter(track=['#bloodrequest'])
+
